@@ -1,0 +1,167 @@
+@use '../../lib/service.scss' as s;
+.section-big {
+  padding-block: s.space(20);
+  max-height: 700px;
+  height: 100vh;
+  //   background-size: cover;
+  @media all and (width < s.screen('tablet')) {
+    padding-block: s.space(10);
+    // background-size: 100%;
+    max-height: 500px;
+  }
+}
+.section-small {
+  padding-block: s.space(12);
+  min-height: 580px;
+  height: 50vh;
+  //   background-size: cover;
+}
+.links {
+  text-decoration: none;
+  @include s.click;
+  font-size: s.size('small');
+}
+.link--blue-light {
+  color: s.color('blueLight');
+}
+.link--blue-dark {
+  color: s.color('blueDark');
+}
+.padding--small {
+  padding: s.space(3) 0;
+}
+.background--dark {
+  .product__title,
+  .product__title-small,
+  .product__description,
+  .product__description-small {
+    color: s.color('background');
+  }
+}
+.background--light {
+  .product__title,
+  .product__description {
+    color: s.color('fontDark');
+  }
+}
+.text-block--top {
+  align-content: flex-start;
+}
+.text-block--bottom {
+  align-content: flex-end;
+}
+
+.header {
+  background-color: s.color(backgroundDark);
+  @extend .section;
+}
+.header__content {
+  @extend .section-content;
+  display: flex;
+  justify-content: space-between;
+  padding: s.space(4) 0;
+}
+.header__block {
+  display: flex;
+  gap: s.space(8);
+  align-items: center;
+}
+.header__icon {
+  @include s.click;
+}
+.header--ad {
+  background-color: s.color(backgroundWhite);
+}
+.header__link {
+  color: s.color(whiteLight);
+}
+.footer {
+  background-color: s.color(backgroundLight);
+  @extend .section;
+}
+.footer__block {
+  @extend .section-content;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  @media all and (width < s.screen('tablet')) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  @media all and (width < s.screen('mobile')) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.footer__content {
+  padding-block: s.space(5);
+  display: flex;
+  flex-direction: column;
+  gap: s.space(4);
+}
+.footer__links-block {
+  display: flex;
+  flex-direction: column;
+  gap: s.space(3);
+}
+.footer--title {
+  font-weight: 500;
+}
+.footer__links {
+  color: s.color(fontGrey);
+}
+.product {
+  @extend .section;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: cover;
+}
+.product__content {
+  display: grid;
+  gap: s.space(5);
+  text-align: center;
+}
+
+$productImage: (
+  'iphone-pro' '/img/iPhonePro.png' #000000,
+  'iphone' '/img/iPhone.png' #fafafa,
+  'iWatch' '/img/iWatch.png' #000000,
+  'trade-in' '/img/tradeIn.png' #fafafa,
+  'conference' '/img/conference.png' #000000,
+  'iPad' '/img/iPad.png' #ffff,
+  'smallBusiness' '/img/smallBusiness.png' #000000,
+  'iPods' '/img/iPods.png' #ffff,
+  'card' '/img/card.png' #ffff
+);
+
+@each $class, $url, $color in $productImage {
+  .product--#{$class} {
+    background-image: url(#{$url});
+    background-color: #{$color};
+  }
+}
+.product__title {
+  font-size: 56px;
+  font-weight: 500;
+}
+.product__description {
+  font-size: 28px;
+}
+.product__title-small {
+  font-size: 40px;
+  font-weight: 500;
+}
+.product__description-small {
+  font-size: 20px;
+}
+.product__action {
+  display: flex;
+  gap: s.space(5);
+  justify-content: center;
+  align-items: center;
+}
+.product--link {
+  font-size: 20px;
+  @include s.linkArrow;
+}
+.product--link-small {
+  font-size: 16px;
+  @include s.linkArrow;
+}
